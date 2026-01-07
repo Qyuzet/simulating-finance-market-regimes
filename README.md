@@ -241,36 +241,16 @@ This project had two major attempts:
 
 ---
 
-## Status
-
-**Conference Paper:**
-
-- Status: Ready for final compile and submission
-- Review rounds completed: 8
-- Critical fixes applied: 62+
-- Acceptance risk: Minimal
-- Next steps: Compile in Overleaf, add figures, submit
-
-**Course Project:**
-
-- Classification accuracy: 98.16%
-- Multi-market validation: Complete
-- Code quality: Production-ready
-- Documentation: Comprehensive
-- Expected grade: A / A+
-
----
-
 ## Citation
 
 If you use this work, please cite:
 
 ```
-@article{syahputra2024conformal,
+@article{syahputra2025conformal,
   title={Conformal Prediction for Regime-Based Tactical Asset Allocation},
   author={Syahputra, Riki Awal},
   institution={Binus International University},
-  year={2024}
+  year={2025}
 }
 ```
 
