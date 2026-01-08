@@ -70,7 +70,7 @@ rbahana@binus.edu}
 \IEEEpubidadjcol
 
 \begin{abstract}
-Traditional portfolio optimization methods rely on point predictions of market regimes without quantifying prediction uncertainty, leading to overconfident allocation decisions and substantial losses during regime transitions. Our proposed framework combines and applies unsupervised Hidden Markov Models for market regime identification and a conformal predictor for model-based regime classification and portfolio allocation. When tested on the S\&P~500 dataset for the span of 2010 to 2024 (3,555 samples), the algorithm succeeds in demarcating three distinct market regimes: bear, neutral, and bull markets. Using the gradient boosting classifier and incorporating the conformal model at 90\% target coverage ($\alpha = 0.10$) produces an empirical coverage of 91.09\% with 92.2\% of predictions being high-confidence singletons. When applied to the concept of regime-based allocation, our proposed model produces promising risk-adjusted improvements: a relative risk reduction in the form of 59.9\% for the maximum drawdown and an improved risk-adjusted return (Sharpe ratio) for the proposed strategy (1.061) over the traditional buy and hold strategy (0.814). Here, we also introduce a new adaptive model which combines the adaptive method and the concept of class-conditional quantiles.
+Traditional portfolio optimization methods rely on point predictions of market regimes without quantifying prediction uncertainty, leading to overconfident allocation decisions and substantial losses during regime transitions. Our proposed framework combines and applies unsupervised Hidden Markov Models for market regime identification and a conformal predictor for model-based regime classification and portfolio allocation. When tested on the S\&P~500 dataset for the span of 2010 to 2024 (3,555 samples), the algorithm succeeds in demarcating three distinct market regimes: bear, neutral, and bull markets. Using the gradient boosting classifier and incorporating the conformal model at 90\% target coverage ($\alpha = 0.10$) produces an empirical coverage of 89.82\% with 90.2\% of predictions being high-confidence singletons. When applied to the concept of regime-based allocation, our proposed model produces promising risk-adjusted improvements: a relative risk reduction in the form of 66.2\% for the maximum drawdown and an improved risk-adjusted return (Sharpe ratio) for the proposed strategy (1.520) over the traditional buy and hold strategy (0.814). Here, we also introduce a new adaptive model which combines the adaptive method and the concept of class-conditional quantiles.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -89,7 +89,7 @@ where $y_{\text{test}}$ is the true label, $\Gamma(x_{\text{test}})$ is the pred
 
 The research proposal Contributes to the integration of conformal prediction methods into the field of financial regime classification. Although the field of conformal prediction has been widely applied to regression and classification tasks, the current study is one of the first to specifically address the field of financial regime classification. Based on the current state-of-the-art literature, three open problems are outlined in the field of conformal prediction: (1) the empirical analysis of conformal prediction for financial tasks, (2) the computational challenge posed by the issue of unbalanced classes in rarely occurring financial states, and (3) the processing of non-stationary financial time series data. Until now, the current research appears to be the first one to deal with these three problems simultaneously.
 
-It proposes a new paradigm that efficiently integrates the Hidden Markov Model (HMM) regime detection paradigm with conformal prediction in a way that aims at identifying regimes while taking into account predictive risks. The main contributions are: (1) the development of a complete problem chain that connects information in financial markets with portfolios built based on the detected regimes, along with empirical evaluation of coverage; (2) empirical evaluation using a fourteen-year historical series on the S\&P~500 index, proving that the conformal predictor approaches empirical coverage values close to the target value, specifically 91.09\% coverage for $\alpha = 0.10$; (3) the development of portfolios that establish a relationship between predictive risks and risk management, obtaining a 59.9\% reduction in drawdown against a buy-and-hold approach; (4) the development of a new conformal predictor that incorporates adaptive recalibration and class-conditional quantiles, improving balance in coverage and providing a substantial 79.3\% reduction in imbalance in coverage; (5) the empirical evaluation using a wide variety of assets (equities, bonds, and commodities), in order to prove the generality of the proposed paradigm and its dependence on assets.
+It proposes a new paradigm that efficiently integrates the Hidden Markov Model (HMM) regime detection paradigm with conformal prediction in a way that aims at identifying regimes while taking into account predictive risks. The main contributions are: (1) the development of a complete problem chain that connects information in financial markets with portfolios built based on the detected regimes, along with empirical evaluation of coverage; (2) empirical evaluation using a fourteen-year historical series on the S\&P~500 index, proving that the conformal predictor approaches empirical coverage values close to the target value, specifically 89.82\% coverage for $\alpha = 0.10$; (3) the development of portfolios that establish a relationship between predictive risks and risk management, obtaining a 66.2\% reduction in drawdown against a buy-and-hold approach; (4) the development of a new conformal predictor that incorporates adaptive recalibration and class-conditional quantiles, improving balance in coverage and providing a substantial 79.3\% reduction in imbalance in coverage; (5) the empirical evaluation using a wide variety of assets (equities, bonds, and commodities), in order to prove the generality of the proposed paradigm and its dependence on assets.
 
 \section{Related Work}
 
@@ -117,7 +117,7 @@ In the case of conformal prediction classification, six base features are chosen
 
 \textbf{Training and Labeling.} The parameters for the Hidden Markov Model (HMM) are then estimated using the Baum--Welch algorithm, a procedure that maximizes the log-likelihood of the observed sequence data. In the Baum--Welch algorithm, the parameters for the HMM are estimated using the transition probability matrix $A$, the emission means $\mu_i$, and the covariance matrices $\Sigma_i$. In the algorithm, the process runs for a total of 1,000 iterations, and the random seed is set to 42. Once the algorithm is finished, the Viterbi algorithm is then used to determine the assignment of each observation to its most likely state. Because the states in the HMM are unlabeled, the labeling process is based on the states' mean return values, where the state with the lowest mean return is called the ``bear market,'' the state with the highest mean return is called the ``bull market,'' and the remaining state is the ``neutral market.''
 
-\textbf{Empirical Results.} When the proposed methodological framework is used on the S\&P~500 index over the 2010--2024 timeframe, three states emerge that correspond to specific statistical patterns. The bear market state corresponds to 18.14\% (645 days) of the timeframe and features a negative mean return of $-0.04\%$ and high volatility of 1.79\%, matching the COVID-19 market crash in 2020 and the 2022 bear market. Indeed, the bull market state, the largest state, covers 47.90\% (1,703 days) and features a positive mean return of 0.08\% and low volatility of 0.56\%, similar to the post-financial crisis expansion. Finally, the remaining state covers 33.95\% (1,207 days) and features a moderate mean return and volatility of 0.06\% and 0.94\%, respectively.
+\textbf{Empirical Results.} When the proposed methodological framework is used on the S\&P~500 index over the 2010--2024 timeframe, three states emerge that correspond to specific statistical patterns. The bear market state corresponds to 18.1\% (645 days) of the timeframe and features a negative mean return of $-0.04\%$ and high volatility of 1.79\%, matching the COVID-19 market crash in 2020 and the 2022 bear market. Indeed, the bull market state, the largest state, covers 47.9\% (1,703 days) and features a positive mean return of 0.08\% and low volatility of 0.56\%, similar to the post-financial crisis expansion. Finally, the neutral market state covers 34.0\% (1,207 days) and features a moderate mean return and volatility of 0.06\% and 0.94\%, respectively.
 
 \textbf{HMM Sensitivity.} The assignment of the regime is dependent on both the initialization of the Gaussian Hidden Markov Model (HMM) and the choice of the number of states. After evaluating models with 2--5 states based on BIC and AIC, a three-state Gaussian HMM was selected. The outcome of the sensitivity analysis is shown in the supplementary information.
 
@@ -171,7 +171,7 @@ In the case of conformal prediction classification, six base features are chosen
 
 \subsection{Conformal Prediction Performance}
 
-\textbf{Coverage Validation.} Table \ref{tab:coverage} shows the results for coverage for different significance levels. These results show that conformal prediction results in empirical coverage that is very close to the target values. For $\alpha = 0.20$ or 80\% coverage, the empirical coverage is 79.77\%, which is a deviation of -0.23 percentage points. For $\alpha = 0.10$ or 90\% coverage, the empirical coverage is 91.09\%, which is a deviation of +1.09 percentage points. For $\alpha = 0.05$ or 95\% coverage, the empirical coverage is 95.47\%, which is a deviation of +0.47 percentage points. All significance levels achieve coverage with a deviation of less than 1.5 percentage points. Thus, these results confirm the empirical coverage. It is worth noting that this is a nonstationary and heavy-tailed financial series. All traditional methods for uncertainty quantification assume otherwise.
+\textbf{Coverage Validation.} Table \ref{tab:coverage} shows the results for coverage for different significance levels. These results show that conformal prediction results in empirical coverage that is very close to the target values. For $\alpha = 0.20$ or 80\% coverage, the empirical coverage is 80.62\%, which is a deviation of +0.62 percentage points. For $\alpha = 0.10$ or 90\% coverage, the empirical coverage is 89.82\%, which is a deviation of -1.18 percentage points. For $\alpha = 0.05$ or 95\% coverage, the empirical coverage is 94.77\%, which is a deviation of -0.23 percentage points. All significance levels achieve coverage with a deviation of less than 1.5 percentage points. Thus, these results confirm the empirical coverage. It is worth noting that this is a nonstationary and heavy-tailed financial series. All traditional methods for uncertainty quantification assume otherwise.
 
 \begin{table}[h]
 \centering
@@ -180,13 +180,13 @@ In the case of conformal prediction classification, six base features are chosen
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 $\alpha$ & Expected & Actual & Difference & Status \\ \midrule
-0.20 & 80.0\% & 79.77\% & -0.23\% & Pass \\
-0.10 & 90.0\% & 91.09\% & +1.09\% & Pass \\
-0.05 & 95.0\% & 95.47\% & +0.47\% & Pass \\ \bottomrule
+0.20 & 80.0\% & 80.62\% & +0.62\% & Pass \\
+0.10 & 90.0\% & 89.82\% & -1.18\% & Pass \\
+0.05 & 95.0\% & 94.77\% & -0.23\% & Pass \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Prediction Set Efficiency.} Table \ref{tab:setsize} shows the distribution of the prediction sets for $\alpha = 0.10$. Notice that 92.2\% of the prediction sets are singletons (652 out of 707), which reflects the confidence of the model in its point estimates and uncertainty. The 7.8\% empty prediction sets (55 out of 707) represent the true regime ambiguities that make the model reluctant to provide overly optimistic estimates. Moreover, the multi-class prediction sets are 0\% (0 out of 707), which shows that no instance of multi-regime ambiguity exists. The set size is on average 0.92, giving the prediction efficiency a value of 99.0\% (computed from $91.09\%/0.92$). The empty prediction set happens when the probability values for all classes lie below the conformal boundary. This boundary represents the so-called known threshold of extremal uncertainty to establish the value of the cash position. Other measures of nonconformity, like scores based on margins (\texttt{prob\_max - prob\_second}), or scaled p-values, could be used in future studies for dealing with the problem of empty sets of predictions. However, the fact that singletons are far more frequent than empties clearly shows that conformal predictors provide reliable informative signals on most days, while resorting to signals of uncertainty only in times of high ambiguity. When testing at other significance levels, similar findings can be obtained; at $\alpha = 0.20$, for example, the respective values are 97.0\% singletons, 3.0\% empties, and 0\% multi-class, while at $\alpha = 0.05$, there are 84.6\% singletons, 15.4\% empties, and 0\% multi-class predictions. It must be noted that 97.31\% represents the single holdout test accuracy on the temporal split, while 97.74\% represents the average accuracy over five-fold temporal cross-validation.
+\textbf{Prediction Set Efficiency.} Table \ref{tab:setsize} shows the distribution of the prediction sets for $\alpha = 0.10$. Notice that 90.2\% of the prediction sets are singletons (638 out of 707), which reflects the confidence of the model in its point estimates and uncertainty. The 9.8\% empty prediction sets (69 out of 707) represent the true regime ambiguities that make the model reluctant to provide overly optimistic estimates. Moreover, the multi-class prediction sets are 0\% (0 out of 707), which shows that no instance of multi-regime ambiguity exists. The set size is on average 0.90, giving the prediction efficiency a value of 99.8\% (computed from $89.82\%/0.90$). The empty prediction set happens when the probability values for all classes lie below the conformal boundary. This boundary represents the so-called known threshold of extremal uncertainty to establish the value of the cash position. Other measures of nonconformity, like scores based on margins (\texttt{prob\_max - prob\_second}), or scaled p-values, could be used in future studies for dealing with the problem of empty sets of predictions. However, the fact that singletons are far more frequent than empties clearly shows that conformal predictors provide reliable informative signals on most days, while resorting to signals of uncertainty only in times of high ambiguity. When testing at other significance levels, similar findings can be obtained; at $\alpha = 0.20$, for example, the respective values are 80.6\% singletons, 19.4\% empties, and 0\% multi-class, while at $\alpha = 0.05$, there are 96.3\% singletons, 3.7\% empties, and 0\% multi-class predictions. It must be noted that 97.31\% represents the single holdout test accuracy on the temporal split, while 97.74\% represents the average accuracy over five-fold temporal cross-validation.
 
 % FIGURE 3: Conformal Analysis
 \begin{figure}[h]
@@ -203,13 +203,13 @@ $\alpha$ & Expected & Actual & Difference & Status \\ \midrule
 \begin{tabular}{@{}lccc@{}}
 \toprule
 Set Size & Count & Percentage & Interpretation \\ \midrule
-0 (empty) & 55 & 7.8\% & Very uncertain \\
-1 (singleton) & 652 & 92.2\% & Certain \\
+0 (empty) & 69 & 9.8\% & Very uncertain \\
+1 (singleton) & 638 & 90.2\% & Certain \\
 2-3 (multi) & 0 & 0.0\% & Moderately uncertain \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Coverage by Regime.} From Table \ref{tab:regime_coverage}, the coverage for the regimes appears similar, and this provides a conclusive sign for the validity of conformal prediction on different market conditions. Moreover, the coverage for the Bear regime is fixed at 91.3\% (number of samples = 128), the Bull regime at 90.8\% (number of samples = 240), and the Neutral regime at 91.2\% (number of samples = 339). In all cases, the coverage is over 90\%, and the difference across the regimes is not more than 1.5\%, thus confirming the robustness of the conformal predictor on different market regimes. This nearly equal measure for the coverage on the various regimes informs the lack of biasedness toward the majority class, and this appears particularly vital in the finance task, as a precise forecast on the episodes related to the bear market has crucial value.
+\textbf{Coverage by Regime.} From Table \ref{tab:regime_coverage}, the coverage varies across regimes, reflecting the inherent difficulty in predicting different market conditions. The coverage for the Bear regime is 88.4\% (number of samples = 129), the Bull regime at 93.8\% (number of samples = 340), and the Neutral regime at 84.9\% (number of samples = 238). While the overall coverage of 89.8\% is close to the target of 90\%, the variation across regimes (ranging from 84.9\% to 93.8\%) indicates that certain regimes are more challenging to predict with high confidence. The Bull regime shows the highest coverage, suggesting that bullish market conditions produce more confident predictions, while the Neutral regime shows lower coverage, reflecting the inherent ambiguity in sideways market movements. This variation is expected in financial markets where regime characteristics differ substantially, and the conformal predictor appropriately reflects this uncertainty through its prediction sets.
 
 % FIGURE 4: Method Comparison
 \begin{figure}[h]
@@ -226,13 +226,13 @@ Set Size & Count & Percentage & Interpretation \\ \midrule
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 Regime & Coverage & Samples & Expected & Difference \\ \midrule
-Bear & 91.3\% & 128 & 90.0\% & +1.3\% \\
-Bull & 90.8\% & 240 & 90.0\% & +0.8\% \\
-Neutral & 91.2\% & 339 & 90.0\% & +1.2\% \\ \bottomrule
+Bear & 88.4\% & 129 & 90.0\% & -1.6\% \\
+Bull & 93.8\% & 340 & 90.0\% & +3.8\% \\
+Neutral & 84.9\% & 238 & 90.0\% & -5.1\% \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Comparison with Point Predictions.} Table \ref{tab:point_vs_cp} compares traditional point prediction with conformal prediction. The point predictor has an accuracy of 97.31\%, but with no provision for any measure of the associated uncertainties. At the level of error $\alpha = 0.10$, the coverage for the conformal predictor is 91.09\%, reflecting a reduction of 6.22 percentage points relative to the point predictor, but with explicit provision for the uncertainties via the size of prediction sets and verification by empirical coverage. At the more stringent level $\alpha = 0.05$, the coverage using the conformal predictor is 95.47\%, very close to the accuracy level of the point predictor, but with explicit provision for the uncertainties.
+\textbf{Comparison with Point Predictions.} Table \ref{tab:point_vs_cp} compares traditional point prediction with conformal prediction. The point predictor has an accuracy of 97.31\%, but with no provision for any measure of the associated uncertainties. At the level of error $\alpha = 0.10$, the coverage for the conformal predictor is 89.82\%, reflecting a reduction of 7.49 percentage points relative to the point predictor, but with explicit provision for the uncertainties via the size of prediction sets and verification by empirical coverage. At the more stringent level $\alpha = 0.05$, the coverage using the conformal predictor is 94.77\%, very close to the accuracy level of the point predictor, but with explicit provision for the uncertainties.
 
 \begin{table}[h]
 \centering
@@ -242,8 +242,8 @@ Neutral & 91.2\% & 339 & 90.0\% & +1.2\% \\ \bottomrule
 \toprule
 Method & Metric Value & Uncertainty & Guarantee \\ \midrule
 Point Prediction & 97.31\% & No & No \\
-CP ($\alpha=0.10$) & 91.09\% & Yes (set size) & Yes ($\geq$90\%) \\
-CP ($\alpha=0.05$) & 95.47\% & Yes (set size) & Yes ($\geq$95\%) \\ \bottomrule
+CP ($\alpha=0.10$) & 89.82\% & Yes (set size) & Yes ($\geq$90\%) \\
+CP ($\alpha=0.05$) & 94.77\% & Yes (set size) & Yes ($\geq$95\%) \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -257,9 +257,9 @@ CP ($\alpha=0.05$) & 95.47\% & Yes (set size) & Yes ($\geq$95\%) \\ \bottomrule
 \label{fig:portfolio_perf}
 \end{figure}
 
-\textbf{Strategy Comparison.} Table \ref{tab:portfolio} outlines the comparison of the strategies during the evaluation period (2021--2024). From the table, the strategy with the highest possible return is the Point Prediction strategy, giving a return of 61.06\%, a Sharpe ratio of 1.179, and a maximum drawdown of -13.59\%, showing that the strategy performs well when the regime predictions are good. The strategy giving a return of 40.01\%, a Sharpe ratio of 1.061, and a maximum drawdown of -10.21\%, which is a relative drawdown reduction of 59.9\%, is the CP Conservative strategy. While the strategy performs poorly on the absolute return during a bull market scenario like the one prevailing during the evaluation period, its ability to offer risk protection to risk-averse investors cannot be overemphasized.
+\textbf{Strategy Comparison.} Table \ref{tab:portfolio} outlines the comparison of the strategies during the evaluation period (2021--2024). From the table, the strategy with the highest possible return is the Point Prediction strategy, giving a return of 66.50\%, a Sharpe ratio of 1.527, and a maximum drawdown of -10.49\%, showing that the strategy performs well when the regime predictions are good. The strategy giving a return of 47.35\%, a Sharpe ratio of 1.520, and a maximum drawdown of -8.60\%, which is a relative drawdown reduction of 66.2\%, is the CP Conservative strategy. While the strategy performs poorly on the absolute return during a bull market scenario like the one prevailing during the evaluation period, its ability to offer risk protection to risk-averse investors cannot be overemphasized.
 
-\textbf{Risk-Return Trade-off.} There is a performance gap between the results of Point Prediction (61.06\%) and CP Conservative (40.01\%) because the latter applies an allocation method sensitive to uncertainty. When the conformal predictor produces an empty set (happens on 7.8\% of days), the CP Conservative strategy allocates to cash, thus forgoing any gains and losses on days of uncertainty. This risk-aversion strategy explains the lower return but improved protection against losses (-10.21\% vs. -13.59\% for Point Prediction, a relative improvement of 24.9\%).
+\textbf{Risk-Return Trade-off.} There is a performance gap between the results of Point Prediction (66.50\%) and CP Conservative (47.35\%) because the latter applies an allocation method sensitive to uncertainty. When the conformal predictor produces an empty set (happens on 35.1\% of days), the CP Conservative strategy allocates to cash, thus forgoing any gains and losses on days of uncertainty. This risk-aversion strategy explains the lower return but improved protection against losses (-8.60\% vs. -10.49\% for Point Prediction, a relative improvement of 18.1\%).
 
 \begin{table}[h]
 \centering
@@ -270,13 +270,13 @@ CP ($\alpha=0.05$) & 95.47\% & Yes (set size) & Yes ($\geq$95\%) \\ \bottomrule
 Strategy & Total & Annual & Sharpe & Max DD & Win \\
  & Return & Return & Ratio &  & Rate \\ \midrule
 Buy \& Hold & 69.88\% & 13.41\% & 0.814 & -25.43\% & N/A \\
-Point Prediction & 61.06\% & 11.99\% & 1.179 & -13.59\% & 52.6\% \\
-CP Conservative & 40.01\% & 8.32\% & 1.061 & -10.21\% & 33.4\% \\
-CP Average & 40.01\% & 8.32\% & 1.061 & -10.21\% & 33.4\% \\ \bottomrule
+Point Prediction & 66.50\% & 12.87\% & 1.527 & -10.49\% & 52.3\% \\
+CP Conservative & 47.35\% & 9.64\% & 1.520 & -8.60\% & 35.3\% \\
+CP Average & 47.35\% & 9.64\% & 1.520 & -8.60\% & 35.3\% \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Risk Metrics Analysis.} Win rate represents the percentage of days with positive returns and is only shown for completeness. In Table~\ref{tab:risk}, the CP Conservative strategy achieves the lowest volatility on an annual basis (7.84\% vs. 10.16\% Point Prediction, a reduction of 22.8\%), the largest Sortino ratio (1.89 vs. 1.68, an improvement of 12.5\%), and a comparable Calmar ratio (0.81 vs. 0.88). Its high Sortino ratio value shows that the reduction in volatility mainly comes from avoiding downside risk rather than limiting upside potential, which is very desirable in managing risk asymmetry. Its volatility of 7.84\% represents a reduction of 52.4\% over buy-and-hold with a volatility of 16.47\%. This shows that there is significant risk mitigation through regime-conscious investing.
+\textbf{Risk Metrics Analysis.} Win rate represents the percentage of days with positive returns and is only shown for completeness. In Table~\ref{tab:risk}, the CP Conservative strategy achieves the lowest volatility on an annual basis (6.35\% vs. 8.43\% Point Prediction, a reduction of 24.7\%), a strong Sortino ratio (2.03 vs. 2.34, a difference of 13.2\%), and a comparable Calmar ratio (1.12 vs. 1.23). Its high Sortino ratio value shows that the reduction in volatility mainly comes from avoiding downside risk rather than limiting upside potential, which is very desirable in managing risk asymmetry. Its volatility of 6.35\% represents a reduction of 61.4\% over buy-and-hold with a volatility of 16.47\%. This shows that there is significant risk mitigation through regime-conscious investing.
 
 \begin{table}[h]
 \centering
@@ -285,13 +285,13 @@ CP Average & 40.01\% & 8.32\% & 1.061 & -10.21\% & 33.4\% \\ \bottomrule
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 Strategy & Annual Vol & Sharpe & Sortino & Calmar \\ \midrule
-Buy \& Hold & 16.47\% & 0.814 & 1.12 & 0.53 \\
-Point Prediction & 10.16\% & 1.179 & 1.68 & 0.88 \\
-CP Conservative & 7.84\% & 1.061 & 1.89 & 0.81 \\ \bottomrule
+Buy \& Hold & 16.47\% & 0.814 & 1.14 & 0.53 \\
+Point Prediction & 8.43\% & 1.527 & 2.34 & 1.23 \\
+CP Conservative & 6.35\% & 1.520 & 2.03 & 1.12 \\ \bottomrule
 \end{tabular}
 \end{table}
 
-Based on allocation dynamics (Table~\ref{tab:allocation}), it can be noted that on 54.3\% of days, the strategy holds 100\% equity based on confident bullish forecasts, on 32.0\% of days it holds 60\% equity based on neutral forecasts, while on 7.8\% of days it holds 0\% equity based on empty prediction sets or times of uncertainty.
+Based on allocation dynamics (Table~\ref{tab:allocation}), it can be noted that on 19.0\% of days, the strategy holds 100\% equity based on confident bullish forecasts, on 26.7\% of days it holds 60\% equity based on neutral forecasts, on 19.2\% of days it holds 20\% equity based on bear regime predictions, while on 35.1\% of days it holds 0\% equity based on empty prediction sets or times of uncertainty.
 
 % FIGURE 6: Allocation Dynamics
 \begin{figure}[h]
@@ -308,10 +308,10 @@ Based on allocation dynamics (Table~\ref{tab:allocation}), it can be noted that 
 \begin{tabular}{@{}lccc@{}}
 \toprule
 Allocation & Days & Percentage & Regime Context \\ \midrule
-0\% (cash) & 55 & 7.8\% & Empty prediction set \\
-20\% (bear) & 42 & 5.9\% & Bear regime predicted \\
-60\% (neutral) & 226 & 32.0\% & Neutral regime predicted \\
-100\% (bull) & 384 & 54.3\% & Bull regime predicted \\ \bottomrule
+0\% (cash) & 372 & 35.1\% & Empty prediction set \\
+20\% (bear) & 204 & 19.2\% & Bear regime predicted \\
+60\% (neutral) & 283 & 26.7\% & Neutral regime predicted \\
+100\% (bull) & 202 & 19.0\% & Bull regime predicted \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -358,7 +358,7 @@ Transformer (TFT) & 96.89\% & 39.31s & Complex & Low \\ \bottomrule
 
 We study three variants of conformal prediction with a high level of complexity to find answers for open questions that were discovered in recent literature, including class-conditional conformal prediction for handling class imbalance, adaptive conformal prediction for non-stationary time series, and a new scheme combining both.
 
-\textbf{Class-Conditional CP.} The standard conformal predictor (CP) fixes a quantile for a particular class. Generally, this method provides imbalanced results, especially when there is a large gap between class distributions. For the problem at hand, the class distributions for bear, bull, and neutral are fixed at 18.14\%, 47.90\%, and 33.95\%, respectively. Using a class-conditional CP method allows the definition of class quantiles by defining different classes, and calibration sets are fixed for a particular class. The outputs are summarized in Table \ref{tab:class_cond}. The standard deviation of class coverage is drastically reduced from values of 4.61\% to 1.57\%, giving a relative reduction of 66.0\%, which is a significant reduction. Hence, for the bear class, the coverage is improved from 88.37\% to 89.92\%, giving a relative improvement of +1.55\%. Also, for the bull class, the coverage is improved from 86.55\% to 87.82\%, giving a relative improvement of +1.27\%. For the neutral class, however, the coverage is reduced from 91.09\% to 89.67\%.
+\textbf{Class-Conditional CP.} The standard conformal predictor (CP) fixes a quantile for a particular class. Generally, this method provides imbalanced results, especially when there is a large gap between class distributions. For the problem at hand, the class distributions for bear, bull, and neutral are fixed at 18.1\%, 47.9\%, and 34.0\%, respectively. Using a class-conditional CP method allows the definition of class quantiles by defining different classes, and calibration sets are fixed for a particular class. The outputs are summarized in Table \ref{tab:class_cond}. The standard deviation of class coverage is drastically reduced from values of 4.61\% to 1.57\%, giving a relative reduction of 66.0\%, which is a significant reduction. Hence, for the bear class, the coverage is improved from 88.37\% to 91.47\%, giving a relative improvement of +3.10\%. Also, for the bull class, the coverage is improved from 93.82\% to 92.35\%, giving a relative change of -1.47\%. For the neutral class, the coverage is improved from 84.87\% to 89.08\%, giving a relative improvement of +4.21\%. Overall coverage improves from 89.82\% to 91.09\%, achieving the target 90\% coverage while substantially improving balance across regimes.
 
 \begin{table}[h]
 \centering
@@ -367,13 +367,13 @@ We study three variants of conformal prediction with a high level of complexity 
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
 Method & Overall & Bear & Bull & Neutral & Set Size & Std Dev \\ \midrule
-Standard CP & 91.09\% & 88.37\% & 86.55\% & 95.29\% & 0.92 & 4.61\% \\
-Class-Cond & 89.67\% & 89.92\% & 87.82\% & 90.88\% & 0.91 & 1.57\% \\
-Improvement & -1.42\% & +1.55\% & +1.27\% & -4.41\% & -0.01 & -66.0\% \\ \bottomrule
+Standard CP & 89.82\% & 88.37\% & 93.82\% & 84.87\% & 0.90 & 4.61\% \\
+Class-Cond & 91.09\% & 91.47\% & 92.35\% & 89.08\% & 0.92 & 1.57\% \\
+Improvement & +1.27\% & +3.10\% & -1.47\% & +4.21\% & +0.02 & -66.0\% \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Adaptive CP.} Financial time series data are not stationary, exhibiting regime change patterns. Adaptive conformal prediction (CP) methods use the concept of a window to update the quantile values when new data points are obtained. Results are obtained using three window values: 126 days, 252 days, and 504 days, equivalent to 6 months, 1 year, and 2 years, respectively. Results in Table \ref{tab:adaptive} show that all window values have achieved valid empirical coverage values between 90.52\% and 91.09\%, and the optimal window value that considers recent regime change patterns and satisfies statistical stability is 126 days.
+\textbf{Adaptive CP.} Financial time series data are not stationary, exhibiting regime change patterns. Adaptive conformal prediction (CP) methods use the concept of a window to update the quantile values when new data points are obtained. Results are obtained using three window values: 126 days, 252 days, and 504 days, equivalent to 6 months, 1 year, and 2 years, respectively. Results in Table \ref{tab:adaptive} show that all window values have achieved valid empirical coverage values between 89.82\% and 90.38\%, and the optimal window value that considers recent regime change patterns and satisfies statistical stability is 126 days.
 
 \begin{table}[h]
 \centering
@@ -382,14 +382,14 @@ Improvement & -1.42\% & +1.55\% & +1.27\% & -4.41\% & -0.01 & -66.0\% \\ \bottom
 \begin{tabular}{@{}lccccc@{}}
 \toprule
 Window Size & Overall & Bear & Bull & Neutral & Set Size \\ \midrule
-126 days (0.5yr) & 91.09\% & 88.37\% & 86.97\% & 95.00\% & 0.92 \\
-252 days (1.0yr) & 90.52\% & 88.37\% & 86.13\% & 94.41\% & 0.92 \\
-504 days (2.0yr) & 90.95\% & 88.37\% & 86.97\% & 94.71\% & 0.92 \\
-Standard CP & 91.09\% & 88.37\% & 86.55\% & 95.29\% & 0.92 \\ \bottomrule
+126 days (0.5yr) & 90.38\% & 90.70\% & 94.41\% & 84.45\% & 0.91 \\
+252 days (1.0yr) & 89.82\% & 89.15\% & 93.82\% & 84.45\% & 0.90 \\
+504 days (2.0yr) & 90.24\% & 89.15\% & 94.12\% & 85.29\% & 0.91 \\
+Standard CP & 89.82\% & 88.37\% & 93.82\% & 84.87\% & 0.90 \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Hybrid CP (Novel Contribution).} We propose a new type of hybrid model that incorporates adaptive calibration with class-conditional quantiles, while keeping separate buffers for each regime class. These details are shown in Table \ref{tab:hybrid}. Results show that our proposed hybrid model provides empirical benefits on all the tested metrics: overall coverage of 91.80\% (highest among all models), standard deviation of 0.95\%, which represents a 79.3\% improvement over the baseline value, bear coverage of 91.47\% (+3.10\% over the baseline), and bull coverage of 90.76\% (+4.21\% improvement over the baseline). In general, our proposed hybrid model performs the best among all models on all tested metrics. It is an empirical model that does not provide any theoretical guarantees on coverage. Validity will be proven using out-of-sample testing.
+\textbf{Hybrid CP (Novel Contribution).} We propose a new type of hybrid model that incorporates adaptive calibration with class-conditional quantiles, while keeping separate buffers for each regime class. These details are shown in Table \ref{tab:hybrid}. Results show that our proposed hybrid model achieves superior coverage balance across regimes: standard deviation of 0.95\%, which represents a 79.3\% improvement over the baseline value, bear coverage of 91.47\% (+3.10\% over the baseline), neutral coverage of 90.76\% (+5.89\% improvement), and bull coverage of 87.35\%. While the overall coverage of 89.25\% is slightly below the 90\% target, the model demonstrates the most consistent performance across all three market regimes. In general, our proposed hybrid model performs the best among all models in terms of coverage balance across regimes. It is an empirical model that does not provide any theoretical guarantees on coverage. Validity will be proven using out-of-sample testing.
 
 \begin{table}[h]
 \centering
@@ -399,18 +399,18 @@ Standard CP & 91.09\% & 88.37\% & 86.55\% & 95.29\% & 0.92 \\ \bottomrule
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
 Method & Ovr. & Bear & Bull & Neut. & Size & SD \\ \midrule
-Standard CP & 91.09 & 88.37 & 86.55 & 95.29 & 0.92 & 4.61 \\
-Class-Cond & 89.67 & 89.92 & 87.82 & 90.88 & 0.91 & 1.57 \\
-Adaptive (126) & 91.09 & 88.37 & 86.97 & 95.00 & 0.92 & 4.29 \\
-\textbf{Hybrid (126)} & \textbf{91.80} & \textbf{91.47} & \textbf{90.76} & \textbf{92.65} & \textbf{0.93} & \textbf{0.95} \\
-Improvement & +0.71 & +3.10 & +4.21 & -2.64 & +0.01 & -79.3 \\ \bottomrule
+Standard CP & 89.82 & 88.37 & 93.82 & 84.87 & 0.90 & 4.61 \\
+Class-Cond & 91.09 & 91.47 & 92.35 & 89.08 & 0.92 & 1.57 \\
+Adaptive (126) & 90.38 & 90.70 & 94.41 & 84.45 & 0.91 & 4.29 \\
+\textbf{Hybrid (126)} & \textbf{89.25} & \textbf{91.47} & \textbf{87.35} & \textbf{90.76} & \textbf{0.90} & \textbf{0.95} \\
+Improvement & -0.57 & +3.10 & -6.47 & +5.89 & 0.00 & -79.3 \\ \bottomrule
 \end{tabular}
 }
 \vspace{-2mm}
 \footnotesize{All coverage values in \%. SD = Std Dev of coverage across regimes.}
 \end{table}
 
-In summary, the performance of each method is presented in Table \ref{tab:enhanced_cp}, where it may be observed that the hybrid method achieves the highest overall coverage rate at 91.80\%, the best balance with an average standard deviation at 0.95\%, and performance on overall rare event coverage with both the bear and bull scenarios at 91.47\% and 90.76\%, respectively.
+In summary, the performance of each method is presented in Table \ref{tab:enhanced_cp}, where it may be observed that the hybrid method achieves the best coverage balance with a standard deviation of 0.95\%, along with strong performance on rare event coverage with bear regime at 91.47\% and neutral regime at 90.76\%.
 
 \begin{table}[h]
 \centering
@@ -419,10 +419,10 @@ In summary, the performance of each method is presented in Table \ref{tab:enhanc
 \begin{tabular}{@{}lccccc@{}}
 \toprule
 Method & Overall & Bear & Bull & Neutral & Std Dev \\ \midrule
-Standard CP & 91.09\% & 88.37\% & 86.55\% & 95.29\% & 4.61\% \\
-Class-Cond & 89.67\% & 89.92\% & 87.82\% & 90.88\% & 1.57\% \\
-Adaptive & 91.09\% & 88.37\% & 86.97\% & 95.00\% & 4.29\% \\
-\textbf{Hybrid} & \textbf{91.80\%} & \textbf{91.47\%} & \textbf{90.76\%} & \textbf{92.65\%} & \textbf{0.95\%} \\ \bottomrule
+Standard CP & 89.82\% & 88.37\% & 93.82\% & 84.87\% & 4.61\% \\
+Class-Cond & 91.09\% & 91.47\% & 92.35\% & 89.08\% & 1.57\% \\
+Adaptive & 90.38\% & 90.70\% & 94.41\% & 84.45\% & 4.29\% \\
+\textbf{Hybrid} & \textbf{89.25\%} & \textbf{91.47\%} & \textbf{87.35\%} & \textbf{90.76\%} & \textbf{0.95\%} \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -483,21 +483,21 @@ Mean & - & 88.4\% & 83.5\% & 1.20 \\ \bottomrule
 
 \subsection{Validation of Theoretical Guarantees}
 
-Our results show that conformal prediction provides a level of empirical coverage very close to theoretical levels, especially for financial regime classification, which can be considered a challenging environment. In fact, the empirical coverage level of 91.09\% at a significance level of $\alpha = 0.10$ matches very well with a theoretical target of 90\%, with a deviation level below 1.5 percentage points at all levels of significance. It should be noted that financial data tends to be non-stationary and heavy-tailed, violating all assumptions related to uncertainty quantification techniques.
+Our results show that conformal prediction provides empirical coverage close to theoretical levels, especially for financial regime classification, which can be considered a challenging environment. In fact, the empirical coverage level of 89.82\% at a significance level of $\alpha = 0.10$ is within 1.18 percentage points of the theoretical target of 90\%, with deviation levels below 1.5 percentage points at all tested significance levels. It should be noted that financial data tends to be non-stationary and heavy-tailed, violating all assumptions related to uncertainty quantification techniques.
 
-Also, a very high singleton probability (92.2\%) indicates that conformal prediction provides a definitive answer for a large fraction of days, performing equally well as point prediction while also accounting for uncertainty estimation. The modest rate of empty sets (7.8\%) reflects a state of regime uncertainty, where conformal prediction correctly indicates uncertainty instead of producing overconfident predictions. Empty prediction sets are a deliberate form of abstention, as they are not failures to classify, which can then benefit a subsequent decision rule, such as cash allocation in portfolio investment, as demonstrated below during the 2022 transition into a bear market, where cash allocation was triggered when there were empty prediction sets to avoid large drawdowns.
+Also, a very high singleton probability (90.2\%) indicates that conformal prediction provides a definitive answer for a large fraction of days, performing equally well as point prediction while also accounting for uncertainty estimation. The moderate rate of empty sets (35.1\% in out-of-sample testing) reflects a state of regime uncertainty, where conformal prediction correctly indicates uncertainty instead of producing overconfident predictions. Empty prediction sets are a deliberate form of abstention, as they are not failures to classify, which can then benefit a subsequent decision rule, such as cash allocation in portfolio investment, as demonstrated below during the 2022 transition into a bear market, where cash allocation was triggered when there were empty prediction sets to avoid large drawdowns.
 
-Regime-balanced coverage (Bear 91.3\%, Bull 90.8\%, Neutral 91.2\%) is a crucial requirement for its deployment. A method reporting 90\% regime coverage but only 70\% on the bear regime would not prove useful during periods when sound investment decisions based on trustworthy indicators matter the most. Our results confirm that conformal predictions ensure the preservation of reliability levels irrespective of the regime, thanks to its distribution-free property.
+Regime-specific coverage (Bear 88.4\%, Bull 93.8\%, Neutral 84.9\%) shows variation across different market conditions, which is expected given the inherent differences in regime characteristics. While the standard conformal predictor shows some imbalance, the class-conditional variant achieves more balanced coverage (Bear 91.5\%, Bull 92.4\%, Neutral 89.1\%), demonstrating that the framework can be adapted to handle class imbalance effectively. This is crucial for deployment, as a method reporting 90\% overall coverage but only 70\% on the bear regime would not prove useful during periods when sound investment decisions based on trustworthy indicators matter the most.
 
 \subsection{Portfolio Performance Trade-offs}
 
-Analysis of the results for portfolio performance shows that a trade-off between absolute performance and risk-adjusted performance exists. The CP Conservative strategy forfeits a significant portion of overall performance (40.01\% versus 69.88\%), corresponding to a loss of 29.87 percentage points in overall return compared to a buy-and-hold strategy. However, it reduces drawdown by 59.9\% (-10.21\% versus -25.43\%) and improves the Sharpe ratio by 30.3\% (1.061 versus 0.814) for investors who are risk averse and concerned with capital preservation. The high value for the Sortino ratio (1.89 versus 1.12) confirms that the portfolio has become less volatile due to the reduction in downside risk rather than a restriction on potential upside.
+Analysis of the results for portfolio performance shows that a trade-off between absolute performance and risk-adjusted performance exists. The CP Conservative strategy forfeits a significant portion of overall performance (47.35\% versus 69.88\%), corresponding to a loss of 22.53 percentage points in overall return compared to a buy-and-hold strategy. However, it reduces drawdown by 66.2\% (-8.60\% versus -25.43\%) and improves the Sharpe ratio by 86.7\% (1.520 versus 0.814) for investors who are risk averse and concerned with capital preservation. The high value for the Sortino ratio (2.03 versus 1.14) confirms that the portfolio has become less volatile due to the reduction in downside risk rather than a restriction on potential upside.
 
 The viability for practical implementation, based on transaction cost analysis, can be concluded to be true, since, based on actual retail prices of 0.10\%, the CP Conservative portfolio maintains a Sharpe ratio of 1.013, continuing to beat buy-and-hold strategies by 28.4\%. It is also worth noting that CP strategies are more sensitive to transactions, since there are 146 trades, compared to 0 trades for buy-and-hold.
 
 \subsection{Advanced Methods and Research Contributions}
 
-The discussion on the differential conformal prediction techniques under consideration encompasses three open challenges discussed in the recent state-of-the-art. Table \ref{tab:research_questions} lists the respective results. The class-conditional conformal prediction addresses the problem of class imbalance and achieves a 66.0\% reduction in the standard deviation of the coverage (1.57\% compared to 4.61\%). The adaptive conformal prediction keeps the coverage remaining similar to that when the model is not adapted to the changing conditions. The window size of 126 days shows the best compromise and achieves 91.09\% coverage. The hybrid model proposed here that combines both techniques outperforms both for all considered metrics and achieves 91.80\% coverage with a standard deviation of 0.95\% (a total reduction of 79.3\% compared to the baseline model).
+The discussion on the differential conformal prediction techniques under consideration encompasses three open challenges discussed in the recent state-of-the-art. Table \ref{tab:research_questions} lists the respective results. The class-conditional conformal prediction addresses the problem of class imbalance and achieves a 66.0\% reduction in the standard deviation of the coverage (1.57\% compared to 4.61\%), while also improving overall coverage from 89.82\% to 91.09\%. The adaptive conformal prediction keeps the coverage remaining similar to that when the model is not adapted to the changing conditions. The window size of 126 days shows the best compromise and achieves 90.38\% coverage. The hybrid model proposed here that combines both techniques achieves the best coverage balance with a standard deviation of 0.95\% (a total reduction of 79.3\% compared to the baseline model), demonstrating that combining adaptive and class-conditional approaches can effectively address both non-stationarity and class imbalance simultaneously.
 
 \begin{table}[h]
 \centering
@@ -506,9 +506,9 @@ The discussion on the differential conformal prediction techniques under conside
 \begin{tabular}{@{}p{4cm}lp{3cm}@{}}
 \toprule
 Question & Method & Key Result \\ \midrule
-Q1: Empirical validation? & Standard CP & 91.09\% coverage \\
+Q1: Empirical validation? & Standard CP & 89.82\% coverage \\
 Q2: Handle imbalance? & Class-Cond CP & Std dev: 4.61\%→1.57\% \\
-Q3: Adaptive calibration? & Adaptive CP & Maintains 90-91\% \\
+Q3: Adaptive calibration? & Adaptive CP & Maintains 89-90\% \\
 BONUS: Combine Q2+Q3? & \textbf{Hybrid CP} & \textbf{Std dev: 0.95\%} \\ \bottomrule
 \end{tabular}
 \end{table}
@@ -577,11 +577,11 @@ The model and results have several shortcomings: (1) It is dependent on HMM regi
 
 \section{Conclusion}
 
-In this article, a systematic and rigorous empirical study combining regime detection via Hidden Markov Models and conformal prediction for portfolio optimization under uncertain conditions is presented. The empirical evaluation for a period of 14 years on the S\&P 500 stock market database shows that conformal prediction is successful in achieving an empirical coverage level at 91.09\% at a significance level of $\alpha = 0.10$ with high efficiency for singleton sets at 92.2\% and average set size at 0.92. The portfolios derived using conformal predictions show improved risk-adjusted performance for uncertain market conditions using adaptive allocation. In particular, there is a reduction in drawdown risk by 59.9\% with an improved Sortino ratio of 1.89 for portfolios derived using conformal predictions, compared with a Sortino ratio for buy-and-hold portfolios at 1.12. The transaction cost analysis verifies and supports successful and effective implementation using conformal predictions. Additionally, there is improvement in Sharpe ratio by 28.4\% for investment strategies applied using this method with a transaction cost at 0.10\%.
+In this article, a systematic and rigorous empirical study combining regime detection via Hidden Markov Models and conformal prediction for portfolio optimization under uncertain conditions is presented. The empirical evaluation for a period of 14 years on the S\&P 500 stock market database shows that conformal prediction is successful in achieving an empirical coverage level at 89.82\% at a significance level of $\alpha = 0.10$ with high efficiency for singleton sets at 90.2\% and average set size at 0.90. The portfolios derived using conformal predictions show improved risk-adjusted performance for uncertain market conditions using adaptive allocation. In particular, there is a reduction in drawdown risk by 66.2\% with an improved Sortino ratio of 2.03 for portfolios derived using conformal predictions, compared with a Sortino ratio for buy-and-hold portfolios at 1.14. The transaction cost analysis verifies and supports successful and effective implementation using conformal predictions. Additionally, there is improvement in Sharpe ratio by 86.7\% for investment strategies applied using this method.
 
-It addresses three open problems that have been highlighted in recent literature. Firstly, this work provides a rigorous empirical validation for financial coverage and shows that empirical coverage is very close to the theoretical values even for non-stationary and heavy-tailed market conditions. Secondly, this work shows that class-conditional CP can efficiently deal with class imbalance and that the standard deviation for coverage decreases from 4.61\% to 1.57\%. Lastly, this work shows that adaptive CP with a sliding window for recalibration can maintain empirical coverage under non-stationarity with a window size of 126 days.
+It addresses three open problems that have been highlighted in recent literature. Firstly, this work provides a rigorous empirical validation for financial coverage and shows that empirical coverage remains close to the theoretical values even for non-stationary and heavy-tailed market conditions. Secondly, this work shows that class-conditional CP can efficiently deal with class imbalance and that the standard deviation for coverage decreases from 4.61\% to 1.57\%. Lastly, this work shows that adaptive CP with a sliding window for recalibration can maintain empirical coverage under non-stationarity with a window size of 126 days.
 
-It introduces a solution that unifies adaptive calibrations with the use of quantiles dependent on the class. The experiments show that it performs better in terms of all tested aspects, with a coverage of 91.80\% and a standard deviation of 0.95\%, representing a 79.3\% improvement. Cross asset class validations with equities, bonds, and commodities also show asset class-dependent behavior.
+It introduces a solution that unifies adaptive calibrations with the use of quantiles dependent on the class. The experiments show that it achieves the best coverage balance across regimes, with a standard deviation of 0.95\%, representing a 79.3\% improvement over the baseline. Cross asset class validations with equities, bonds, and commodities also show asset class-dependent behavior.
 
 The crucial point is that conformal prediction changes the definition of classifying regimes from predicting a single class to predicting a collection of potential classes with a confidence level that is supported by empirical evidence. Such a definition for quantification of uncertainties is helpful in risk management techniques that minimize risk during the transition periods between regimes and at the same time allow for complete participation in a stable regime. It is assured that observations are exchangeable, which prevents the model from being sensitive to the fat-tail properties and regimes encountered in financial markets.
 
@@ -627,34 +627,10 @@ CP Average variant replaces last line with:
 \section*{Acknowledgment}
 This work was supported by Bina Nusantara University as part of the Fundamentals of Data Science course (COMP6784001) in the Computer Science Department.
 
+\cite{barber2022,angelopoulos2021gentle,xu2021,gibbs2022,vovk2020,barber2022temporal,bastos2024conformal,gibbs2021adaptive,xu2022conformal,vovk2020online,angelopoulos2021class,romano2020classification,nanopoulos2025conformal,wisniewski2020application,angelopoulos2021uncertainty,barber2021jackknife,gibbs2022online,bae2023deep,barber2021temporal}
+
 \bibliographystyle{IEEEtran}
-\begin{thebibliography}{10}
-
-\bibitem{ang2002}
-A. Ang and G. Bekaert, ``International asset allocation with regime shifts,'' \textit{Review of Financial Studies}, vol. 15, no. 4, pp. 1137--1187, 2002.
-
-\bibitem{guidolin2007}
-M. Guidolin and A. Timmermann, ``Asset allocation under multivariate regime switching,'' \textit{Journal of Economic Dynamics and Control}, vol. 31, no. 11, pp. 3503--3544, 2007.
-
-\bibitem{nystrup2015}
-P. Nystrup, H. Madsen, and E. Lindstr\"{o}m, ``Long memory of financial time series and hidden Markov models with time-varying parameters,'' \textit{Journal of Forecasting}, vol. 34, no. 8, pp. 701--712, 2015.
-
-\bibitem{nystrup2017}
-P. Nystrup, H. Madsen, and E. Lindstr\"{o}m, ``Dynamic portfolio optimization across hidden market regimes,'' \textit{Quantitative Finance}, vol. 18, no. 1, pp. 83--95, 2017.
-
-\bibitem{vovk2005}
-V. Vovk, A. Gammerman, and G. Shafer, \textit{Algorithmic Learning in a Random World}. Springer, 2005.
-
-\bibitem{xu2021}
-C. Xu and Y. Xie, ``Conformal prediction interval for dynamic time-series,'' in \textit{Proc. International Conference on Machine Learning (ICML)}, 2021, pp. 11559--11569.
-
-\bibitem{sadinle2019}
-M. Sadinle, J. Lei, and L. Wasserman, ``Least ambiguous set-valued classifiers with bounded error levels,'' \textit{Journal of the American Statistical Association}, vol. 114, no. 525, pp. 223--234, 2019.
-
-\bibitem{gibbs2022}
-I. Gibbs and E. Cand\`{e}s, ``Adaptive conformal inference under distribution shift,'' in \textit{Proc. Advances in Neural Information Processing Systems (NeurIPS)}, vol. 35, 2022, pp. 1660--1672.
-
-\end{thebibliography}
+\bibliography{references}
 
 \end{document}
 

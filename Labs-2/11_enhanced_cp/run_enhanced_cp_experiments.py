@@ -47,8 +47,15 @@ def prepare_data():
     
     # Label regimes by mean return
     regime_returns = [df[regimes == i]['returns'].mean() for i in range(3)]
-    regime_mapping = np.argsort(regime_returns)
-    regimes_labeled = np.array([np.where(regime_mapping == r)[0][0] for r in regimes])
+    regime_order = np.argsort(regime_returns)  # [lowest_idx, middle_idx, highest_idx]
+
+    # Create correct mapping: 0=bear (lowest), 1=bull (highest), 2=neutral (middle)
+    regime_mapping = np.zeros(3, dtype=int)
+    regime_mapping[regime_order[0]] = 0  # lowest return -> Bear
+    regime_mapping[regime_order[2]] = 1  # highest return -> Bull
+    regime_mapping[regime_order[1]] = 2  # middle return -> Neutral
+
+    regimes_labeled = regime_mapping[regimes]
     df['regime'] = regimes_labeled
     
     print(f"  Regime distribution:")
