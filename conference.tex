@@ -14,6 +14,10 @@
 \usepackage{multirow}
 \usepackage{url}
 \usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    hidelinks
+}
 \usepackage[font=footnotesize]{caption}
 \captionsetup[figure]{labelsep=period, name=Fig.}
 \captionsetup[table]{labelsep=period, name=Table}
@@ -36,33 +40,33 @@
 
 \author{
 \IEEEauthorblockN{Riki Awal Syahputra}
-\IEEEauthorblockA{\textit{Computer Science Department} \\
+\IEEEauthorblockA{\textit{School of Computing and Creative Arts} \\
 \textit{Bina Nusantara University} \\
-Jakarta, Indonesia \\
+Jakarta, Indonesia 11480 \\
 riki.syahputra@binus.ac.id}
 \and
 \IEEEauthorblockN{Darrus Loamayer}
-\IEEEauthorblockA{\textit{Computer Science Department} \\
+\IEEEauthorblockA{\textit{School of Computing and Creative Arts} \\
 \textit{Bina Nusantara University} \\
-Jakarta, Indonesia \\
+Jakarta, Indonesia 11480 \\
 darrus.loamayer@binus.ac.id}
 \and
 \IEEEauthorblockN{Yiyang Liu}
-\IEEEauthorblockA{\textit{Computer Science Department} \\
+\IEEEauthorblockA{\textit{School of Computing and Creative Arts} \\
 \textit{Bina Nusantara University} \\
-Jakarta, Indonesia \\
+Jakarta, Indonesia 11480 \\
 yiyang.liu001@binus.ac.id}
 \linebreakand
 \IEEEauthorblockN{Nunung Nurul Qomariyah}
-\IEEEauthorblockA{\textit{Computer Science Department} \\
+\IEEEauthorblockA{\textit{School of Computing and Creative Arts} \\
 \textit{Bina Nusantara University} \\
-Jakarta, Indonesia \\
+Jakarta, Indonesia 11480 \\
 nunung.qomariyah@binus.ac.id}
 \and
 \IEEEauthorblockN{Raymond Bahana}
-\IEEEauthorblockA{\textit{Computer Science Department} \\
+\IEEEauthorblockA{\textit{School of Computing and Creative Arts} \\
 \textit{Bina Nusantara University} \\
-Jakarta, Indonesia \\
+Jakarta, Indonesia 11480 \\
 rbahana@binus.edu}
 }
 
@@ -88,7 +92,7 @@ P(y_{\text{test}} \in \Gamma(x_{\text{test}})) \geq 1 - \alpha
 \end{equation}
 where $y_{\text{test}}$ is the true label, $\Gamma(x_{\text{test}})$ is the prediction set for test input $x_{\text{test}}$, and $\alpha$ is the significance level. In the context of exchangeable but perhaps complex financial data, adaptive and sliding-window techniques are investigated. In finance, distributional relationships are often not accurately captured due to heavy tails, regime changes, and/or lack of stationarity.
 
-The research proposal Contributes to the integration of conformal prediction methods into the field of financial regime classification. Although the field of conformal prediction has been widely applied to regression and classification tasks, the current study is one of the first to specifically address the field of financial regime classification. Based on the current state-of-the-art literature, three open problems are outlined in the field of conformal prediction: (1) the empirical analysis of conformal prediction for financial tasks, (2) the computational challenge posed by the issue of unbalanced classes in rarely occurring financial states, and (3) the processing of non-stationary financial time series data. Until now, the current research appears to be the first one to deal with these three problems simultaneously.
+The research proposal Contributes to the integration of conformal prediction methods~\cite{barber2022,angelopoulos2021gentle} into the field of financial regime classification. Although the field of conformal prediction has been widely applied to regression and classification tasks~\cite{romano2020classification,angelopoulos2021uncertainty}, the current study is one of the first to specifically address the field of financial regime classification. Based on the current state-of-the-art literature, three open problems are outlined in the field of conformal prediction: (1) the empirical analysis of conformal prediction for financial tasks~\cite{bastos2024conformal,wisniewski2020application}, (2) the computational challenge posed by the issue of unbalanced classes in rarely occurring financial states~\cite{angelopoulos2021class,romano2020classification}, and (3) the processing of non-stationary financial time series data~\cite{xu2022conformal,vovk2020online}. Until now, the current research appears to be the first one to deal with these three problems simultaneously.
 
 It proposes a new paradigm that efficiently integrates the Hidden Markov Model (HMM) regime detection paradigm with conformal prediction in a way that aims at identifying regimes while taking into account predictive risks. The main contributions are: (1) the development of a complete problem chain that connects information in financial markets with portfolios built based on the detected regimes, along with empirical evaluation of coverage; (2) empirical evaluation using a fourteen-year historical series on the S\&P~500 index, proving that the conformal predictor approaches empirical coverage values close to the target value, specifically 89.82\% coverage for $\alpha = 0.10$; (3) the development of portfolios that establish a relationship between predictive risks and risk management, obtaining a 66.2\% reduction in drawdown against a buy-and-hold approach; (4) the development of a new conformal predictor that incorporates adaptive recalibration and class-conditional quantiles, improving balance in coverage and providing a substantial 79.3\% reduction in imbalance in coverage; (5) the empirical evaluation using a wide variety of assets (equities, bonds, and commodities), in order to prove the generality of the proposed paradigm and its dependence on assets.
 
@@ -96,11 +100,23 @@ It proposes a new paradigm that efficiently integrates the Hidden Markov Model (
 
 \textbf{Market Regime Classification.} Regime-switching models have been a major focus area for a very long time in the analysis of financial time series data. Recent advances in machine learning have enabled more sophisticated regime detection methods~\cite{nystrup2015multi,nystrup2017regime}, demonstrating that regime-based allocation strategies can outperform static approaches by adapting to changing market conditions. Hidden Markov models have been particularly effective in the unsupervised identification of regime transitions~\cite{nystrup2015multi}. However, these methods have a disadvantage of not providing risk estimates together with the point forecast.
 
-\textbf{Conformal Prediction.} A theoretical framework for conformal predictions has been proposed based on the concept of exchangeability and distribution-free guarantees~\cite{vovk2005algorithmic}. Later studies on conformal predictions include extensions for time series~\cite{xu2021}, which fail to satisfy the assumption of exchangeability as a consequence of the dependencies among the observed values, and classification settings~\cite{sadinle2019}. Finally, the problem of non-stationarity and changes in the concerned distributions are addressed through adaptive conformal inference~\cite{gibbs2022}. Regarding the use of conformal predictions for the financial regime classification task, a series of issues exist that demand attention, including the evaluation of the empirical coverage for the categorization performance, handling the imbalanced datasets issue, and connection to portfolio-level methods.
+\textbf{Conformal Prediction.} A theoretical framework for conformal predictions has been proposed based on the concept of exchangeability and distribution-free guarantees~\cite{vovk2005algorithmic,barber2022}. Later studies on conformal predictions include extensions for time series~\cite{xu2021,xu2022conformal,barber2021temporal}, which fail to satisfy the assumption of exchangeability as a consequence of the dependencies among the observed values, and classification settings~\cite{sadinle2019,romano2020classification}. The problem of non-stationarity and changes in the concerned distributions are addressed through adaptive conformal inference~\cite{gibbs2022,gibbs2021adaptive,vovk2020online}. Recent work has also explored online conformal prediction methods~\cite{gibbs2022online} and applications to deep learning~\cite{bae2023deep}. Regarding the use of conformal predictions for the financial regime classification task, a series of issues exist that demand attention, including the evaluation of the empirical coverage for the categorization performance, handling the imbalanced datasets issue, and connection to portfolio-level methods.
 
-\textbf{Uncertainty Quantification in Finance.} Conventional techniques use either the Bayesian approach, which requires prior specification and distributional assumptions, or the bootstrap resampling method, which requires large sample sizes and assumes stationarity. These methods face challenges when addressing the fat-tailed and non-stationary properties of financial returns. To the best of our knowledge, this study is one of the first to use the conformal prediction method for regime-based portfolio optimization in the literature. We address the current open issues in the literature by proposing a new hybrid solution.
+\textbf{Uncertainty Quantification in Finance.} Conventional techniques use either the Bayesian approach, which requires prior specification and distributional assumptions, or the bootstrap resampling method, which requires large sample sizes and assumes stationarity. These methods face challenges when addressing the fat-tailed and non-stationary properties of financial returns. Recent advances in distribution-free uncertainty quantification~\cite{barber2021jackknife,angelopoulos2021gentle} have shown promise for financial applications~\cite{bastos2024conformal,wisniewski2020application}. To the best of our knowledge, this study is one of the first to use the conformal prediction method for regime-based portfolio optimization in the literature. We address the current open issues in the literature by proposing a new hybrid solution.
 
 \section{Methodology}
+
+\subsection{Research Flow Overview}
+
+In the following figure, \ref{fig:research_flow}, the full research pipeline for the methodology is depicted with the eight dominant parts of the process for the research presented here. It starts with data gathering and processing and proceeds with the discovery via the use of the HMMs and, finally, the application of the topic to portfolio optimization problems with the methodologies developed. Improved methods, such as Hybrid Conformal Prediction, are then produced to address the instability of the coverage and continue with techniques of generalization over multiple assets and markets.
+
+% FIGURE: Research Flow
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{results/research-flow-compact.png}
+\caption{Full research methodology pipeline with the five stages from data acquisition to validated results. The zig-zag layout illustrates the stages from preparing data (blue) to finding regimes (purple) up to conformal prediction and portfolio optimization with validated results in pink and yellow.}
+\label{fig:research_flow}
+\end{figure}
 
 \subsection{Data and Features}
 
@@ -114,7 +130,7 @@ In the case of conformal prediction classification, six base features are chosen
 
 \subsection{Hidden Markov Model for Regime Discovery}
 
-\textbf{Model Specification.} For the inference of the possible hidden states based on the underlying data, we use a three-state Gaussian hidden Markov model. In the proposed model, we use three features: return, volatility, and momentum. They are all mutually complementary features. To define the hidden states, we use a $3 \times 3$ state transition matrix $A$, where $A_{ij}$ is the transition probability from state $i$ to state $j$. To define the states as observations, we use a multivariate Gaussian $\mathcal{N}(\mu_i, \Sigma_i)$ for each state $i$. Here, the hidden states are defined as $\{s_0, s_1, s_2\}$, where $\mu_i$ is a mean vector and the state covariance is the full covariance matrix $\Sigma_i$. Therefore, the model considers the correlation between the features for the states.
+\textbf{Model Specification.} For the inference of the possible hidden states based on the underlying data, we use a three-state Gaussian hidden Markov model~\cite{nystrup2015multi}. In the proposed model, we use three features: return, volatility, and momentum. They are all mutually complementary features. To define the hidden states, we use a $3 \times 3$ state transition matrix $A$, where $A_{ij}$ is the transition probability from state $i$ to state $j$. To define the states as observations, we use a multivariate Gaussian $\mathcal{N}(\mu_i, \Sigma_i)$ for each state $i$. Here, the hidden states are defined as $\{s_0, s_1, s_2\}$, where $\mu_i$ is a mean vector and the state covariance is the full covariance matrix $\Sigma_i$. Therefore, the model considers the correlation between the features for the states.
 
 \textbf{Training and Labeling.} The parameters for the Hidden Markov Model (HMM) are then estimated using the Baum--Welch algorithm, a procedure that maximizes the log-likelihood of the observed sequence data. In the Baum--Welch algorithm, the parameters for the HMM are estimated using the transition probability matrix $A$, the emission means $\mu_i$, and the covariance matrices $\Sigma_i$. In the algorithm, the process runs for a total of 1,000 iterations, and the random seed is set to 42. Once the algorithm is finished, the Viterbi algorithm is then used to determine the assignment of each observation to its most likely state. Because the states in the HMM are unlabeled, the labeling process is based on the states' mean return values, where the state with the lowest mean return is called the ``bear market,'' the state with the highest mean return is called the ``bull market,'' and the remaining state is the ``neutral market.''
 
@@ -125,7 +141,7 @@ In the case of conformal prediction classification, six base features are chosen
 % FIGURE 1: HMM Regime Distribution
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/figures/hmm_regime_distribution.png}
+\includegraphics[width=\columnwidth]{results/figures/hmm_regime_distribution.png}
 \caption{HMM regime distribution showing temporal evolution of bear, bull, and neutral regimes across the 2010-2024 period.}
 \label{fig:hmm_regime}
 \end{figure}
@@ -133,7 +149,7 @@ In the case of conformal prediction classification, six base features are chosen
 % FIGURE 2: Regime Characteristics
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/figures/regime_characteristics.png}
+\includegraphics[width=\columnwidth]{results/figures/regime_characteristics.png}
 \caption{Statistical characteristics of discovered regimes including mean returns, volatility, and duration distributions.}
 \label{fig:regime_char}
 \end{figure}
@@ -144,7 +160,7 @@ In the case of conformal prediction classification, six base features are chosen
 
 \textbf{Base Classifier.} We use a Gradient Boosting Classifier for our regime prediction task, choosing this model because of its proven strength on tabular data, model interpretability through feature importances, and efficiency. The model uses a sequential approach to construct an ensemble of decision trees, each of which attempts to correct for mistakes of its predecessor models by modeling errors. Setup for this model: 100 estimators, 0.1 learning rate, a max depth of 5, random state of 42. On evaluation with regular point predictions (argmax of class probabilities), our model achieved a single hold-out test accuracy of 97.31\%.
 
-\textbf{Conformal Algorithm.} Using the calibration dataset $\{(x_i, y_i)\}_{i=1}^n$ and the base classifier $f: X \to \Delta^{K-1}$ (regime classes $K=3$) estimating class probabilities, we build the prediction set $\Gamma_\alpha(x)$ with a coverage $P(y \in \Gamma_\alpha(x)) \geq 1-\alpha$ in the four steps. First, we train the classifier $f$ on a training dataset using standard gradient boosting. Second, we calculate nonconformity scores for the dataset $\{(x_i, y_i)\}_{i=1}^n$: we calculate for each pair $(x_i, y_i)$ the value $s_i = 1 - f(x_i)[y_i]$ for the predicted probability $f(x_i)[y_i]$. The standard inverse probability nonconformity score is used; however, margin-based scores are described in Section IV. Smaller values correspond to more conforming points. Third, we calculate the conformal quantile $\hat{q}_\alpha$ for the fixed level $1-\alpha$ based on the empirical distribution function of the nonconformity scores. Finally, the prediction sets for the test instance $x$ are defined as $\Gamma_\alpha(x$).
+\textbf{Conformal Algorithm.} Using the calibration dataset $\{(x_i, y_i)\}_{i=1}^n$ and the base classifier $f: X \to \Delta^{K-1}$ (regime classes $K=3$) estimating class probabilities, we build the prediction set $\Gamma_\alpha(x)$ with a coverage $P(y \in \Gamma_\alpha(x)) \geq 1-\alpha$~\cite{barber2022,angelopoulos2021gentle} in the four steps. First, we train the classifier $f$ on a training dataset using standard gradient boosting. Second, we calculate nonconformity scores for the dataset $\{(x_i, y_i)\}_{i=1}^n$: we calculate for each pair $(x_i, y_i)$ the value $s_i = 1 - f(x_i)[y_i]$ for the predicted probability $f(x_i)[y_i]$. The standard inverse probability nonconformity score is used; however, margin-based scores are described in Section IV. Smaller values correspond to more conforming points. Third, we calculate the conformal quantile $\hat{q}_\alpha$ for the fixed level $1-\alpha$ based on the empirical distribution function of the nonconformity scores. Finally, the prediction sets for the test instance $x$ are defined as $\Gamma_\alpha(x$).
 
 \textbf{Coverage Levels.} We consider significance levels for different levels of coverage efficiency: $\alpha = 0.20$ for 80\% coverage and sets of smaller sizes, $\alpha = 0.10$ for 90\% coverage and a balanced efficiency level, and $\alpha = 0.05$ for 95\% coverage and sets of larger sizes.
 
@@ -192,7 +208,7 @@ $\alpha$ & Expected & Actual & Difference & Status \\ \midrule
 % FIGURE 3: Conformal Analysis
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/conformal_prediction/conformal_analysis.png}
+\includegraphics[width=\columnwidth]{results/conformal_prediction/conformal_analysis.png}
 \caption{Conformal prediction analysis showing coverage rates, set size distributions, and calibration quality across significance levels.}
 \label{fig:conformal_analysis}
 \end{figure}
@@ -215,7 +231,7 @@ Set Size & Count & Percentage & Interpretation \\ \midrule
 % FIGURE 4: Method Comparison
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/conformal_prediction/comparison.png}
+\includegraphics[width=\columnwidth]{results/conformal_prediction/comparison.png}
 \caption{Comparison of baseline, class-conditional, adaptive, and hybrid conformal prediction methods across coverage and efficiency metrics.}
 \label{fig:cp_comparison}
 \end{figure}
@@ -253,7 +269,7 @@ CP ($\alpha=0.05$) & 94.77\% & Yes (set size) & Yes ($\geq$95\%) \\ \bottomrule
 % FIGURE 5: Portfolio Performance
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/cp_portfolio/portfolio_performance.png}
+\includegraphics[width=\columnwidth]{results/cp_portfolio/portfolio_performance.png}
 \caption{Cumulative returns comparison across buy-and-hold, point prediction, and conformal prediction strategies over the test period.}
 \label{fig:portfolio_perf}
 \end{figure}
@@ -266,38 +282,26 @@ CP ($\alpha=0.05$) & 94.77\% & Yes (set size) & Yes ($\geq$95\%) \\ \bottomrule
 \centering
 \caption{Portfolio Strategy Comparison (2021-2024)}
 \label{tab:portfolio}
+{\small
 \begin{tabular}{@{}lccccc@{}}
 \toprule
-Strategy & Total & Annual & Sharpe & Max DD & Win \\
- & Return & Return & Ratio &  & Rate \\ \midrule
-Buy \& Hold & 69.88\% & 13.41\% & 0.814 & -25.43\% & N/A \\
-Point Prediction & 66.50\% & 12.87\% & 1.527 & -10.49\% & 52.3\% \\
-CP Conservative & 47.35\% & 9.64\% & 1.520 & -8.60\% & 35.3\% \\
-CP Average & 47.35\% & 9.64\% & 1.520 & -8.60\% & 35.3\% \\ \bottomrule
+Strategy & Return & Sharpe & Max DD & Vol & Sortino \\ \midrule
+Buy \& Hold & 69.88\% & 0.814 & -25.43\% & 16.47\% & 1.14 \\
+Point Pred. & 66.50\% & 1.527 & -10.49\% & 8.43\% & 2.34 \\
+CP Conserv. & 47.35\% & 1.520 & -8.60\% & 6.35\% & 2.03 \\
+CP Average & 47.35\% & 1.520 & -8.60\% & 6.35\% & 2.03 \\ \bottomrule
 \end{tabular}
+}
 \end{table}
 
-\textbf{Risk Metrics Analysis.} Win rate represents the percentage of days with positive returns and is only shown for completeness. In Table~\ref{tab:risk}, the CP Conservative strategy achieves the lowest volatility on an annual basis (6.35\% vs. 8.43\% Point Prediction, a reduction of 24.7\%), a strong Sortino ratio (2.03 vs. 2.34, a difference of 13.2\%), and a comparable Calmar ratio (1.12 vs. 1.23). Its high Sortino ratio value shows that the reduction in volatility mainly comes from avoiding downside risk rather than limiting upside potential, which is very desirable in managing risk asymmetry. Its volatility of 6.35\% represents a reduction of 61.4\% over buy-and-hold with a volatility of 16.47\%. This shows that there is significant risk mitigation through regime-conscious investing.
-
-\begin{table}[h]
-\centering
-\caption{Risk Metrics Comparison}
-\label{tab:risk}
-\begin{tabular}{@{}lcccc@{}}
-\toprule
-Strategy & Annual Vol & Sharpe & Sortino & Calmar \\ \midrule
-Buy \& Hold & 16.47\% & 0.814 & 1.14 & 0.53 \\
-Point Prediction & 8.43\% & 1.527 & 2.34 & 1.23 \\
-CP Conservative & 6.35\% & 1.520 & 2.03 & 1.12 \\ \bottomrule
-\end{tabular}
-\end{table}
+\textbf{Risk Metrics Analysis.} Win rate represents the percentage of days with positive returns and is only shown for completeness. In Table~\ref{tab:portfolio}, the CP Conservative strategy achieves the lowest volatility on an annual basis (6.35\% vs. 8.43\% Point Prediction, a reduction of 24.7\%), a strong Sortino ratio (2.03 vs. 2.34, a difference of 13.2\%), and a comparable Calmar ratio (1.12 vs. 1.23). Its high Sortino ratio value shows that the reduction in volatility mainly comes from avoiding downside risk rather than limiting upside potential, which is very desirable in managing risk asymmetry. Its volatility of 6.35\% represents a reduction of 61.4\% over buy-and-hold with a volatility of 16.47\%. This shows that there is significant risk mitigation through regime-conscious investing.
 
 Based on allocation dynamics (Table~\ref{tab:allocation}), it can be noted that on 19.0\% of days, the strategy holds 100\% equity based on confident bullish forecasts, on 26.7\% of days it holds 60\% equity based on neutral forecasts, on 19.2\% of days it holds 20\% equity based on bear regime predictions, while on 35.1\% of days it holds 0\% equity based on empty prediction sets or times of uncertainty.
 
 % FIGURE 6: Allocation Dynamics
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/cp_portfolio/allocation_dynamics.png}
+\includegraphics[width=\columnwidth]{results/cp_portfolio/allocation_dynamics.png}
 \caption{Time series of portfolio allocation decisions showing adaptive equity exposure based on conformal prediction set composition.}
 \label{fig:allocation}
 \end{figure}
@@ -337,44 +341,28 @@ Std Dev & 0.56\% & 0.65\% \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Bootstrap Validation.} For the bootstrapping process, we used 1,000 iterations. The 95\% confidence intervals for the remaining variables are as follows: coverage [89.82\%, 92.36\%], Sharpe ratio [0.95, 1.27], and maximum drawdown [-11.45\%, -9.12\%]. The 95\% confidence interval for coverage [89.82\%, 92.36\%] is very close to the target level of 90\%, hence representing validity within sample variability. For the remaining metrics, the confidence intervals do not include the baseline performance of the buy-and-hold strategy with Sharpe ratio of 0.814 and maximum drawdown of -25.43\%.
-
-\textbf{Permutation Test.} A permutation test with a total of 100 iterations was performed as a sanity check. The performance is found to be much poorer when subject to random permutations of the labels; however, validity for hypothesis testing is not guaranteed at this point. For hypothesis tests, we recommend that at least 1,000 permutations be performed. These will be considered for the further analysis.
-
-\textbf{State-of-the-Art Comparison.} We compare the performance of the Gradient Boosting classifier with that of a deep learning model based on the Transformer architecture (with Temporal Fusion Transformer specifications of 4 layers, 128 hidden units in each layer, and 8 attention heads) on the same sets of features. We present a comparison on various performance metrics in Table \ref{tab:sota}. The Gradient Boosting method is able to achieve a classification accuracy of 97.74\%, while the Transformer is able to achieve a similar goal with a slightly lower accuracy value of 96.89\% (with a relative improvement of 0.85\%). Additionally, the Gradient Boosting model is able to train much faster compared to the Transformer model (39.31 seconds), taking just around 5--10 seconds for training (with a relative improvement of $5.6\times$ faster). It is worth noting that the hyperparameter tuning for the models was performed as suggested by standard configurations recommended in previous literature and not as part of exhaustive hyperparameter tuning.
-
-\begin{table}[h]
-\centering
-\caption{State-of-the-Art Model Comparison (Intel i7-10700K, 32GB RAM, single runs)}
-\label{tab:sota}
-\begin{tabular}{@{}lcccc@{}}
-\toprule
-Model & Accuracy & Training Time & Complexity & Interpret. \\ \midrule
-Gradient Boosting & 97.74\% & 5-10s & Simple & High \\
-Transformer (TFT) & 96.89\% & 39.31s & Complex & Low \\ \bottomrule
-\end{tabular}
-\end{table}
-
 \subsection{Enhanced Conformal Prediction Methods}
 
 We study three variants of conformal prediction with a high level of complexity to find answers for open questions that were discovered in recent literature, including class-conditional conformal prediction for handling class imbalance, adaptive conformal prediction for non-stationary time series, and a new scheme combining both.
 
-\textbf{Class-Conditional CP.} The standard conformal predictor (CP) fixes a quantile for a particular class. Generally, this method provides imbalanced results, especially when there is a large gap between class distributions. For the problem at hand, the class distributions for bear, bull, and neutral are fixed at 18.1\%, 47.9\%, and 34.0\%, respectively. Using a class-conditional CP method allows the definition of class quantiles by defining different classes, and calibration sets are fixed for a particular class. The outputs are summarized in Table \ref{tab:class_cond}. The standard deviation of class coverage is drastically reduced from values of 4.61\% to 1.57\%, giving a relative reduction of 66.0\%, which is a significant reduction. Hence, for the bear class, the coverage is improved from 88.37\% to 91.47\%, giving a relative improvement of +3.10\%. Also, for the bull class, the coverage is improved from 93.82\% to 92.35\%, giving a relative change of -1.47\%. For the neutral class, the coverage is improved from 84.87\% to 89.08\%, giving a relative improvement of +4.21\%. Overall coverage improves from 89.82\% to 91.09\%, achieving the target 90\% coverage while substantially improving balance across regimes.
+\textbf{Class-Conditional CP.} The standard conformal predictor (CP) fixes a quantile for a particular class. Generally, this method provides imbalanced results, especially when there is a large gap between class distributions. For the problem at hand, the class distributions for bear, bull, and neutral are fixed at 18.1\%, 47.9\%, and 34.0\%, respectively. Using a class-conditional CP method~\cite{angelopoulos2021class,romano2020classification} allows the definition of class quantiles by defining different classes, and calibration sets are fixed for a particular class. The outputs are summarized in Table \ref{tab:class_cond}. The standard deviation of class coverage is drastically reduced from values of 4.61\% to 1.57\%, giving a relative reduction of 66.0\%, which is a significant reduction. Hence, for the bear class, the coverage is improved from 88.37\% to 91.47\%, giving a relative improvement of +3.10\%. Also, for the bull class, the coverage is improved from 93.82\% to 92.35\%, giving a relative change of -1.47\%. For the neutral class, the coverage is improved from 84.87\% to 89.08\%, giving a relative improvement of +4.21\%. Overall coverage improves from 89.82\% to 91.09\%, achieving the target 90\% coverage while substantially improving balance across regimes.
 
 \begin{table}[h]
 \centering
 \caption{Class-Conditional CP Results}
 \label{tab:class_cond}
-\begin{tabular}{@{}lcccccc@{}}
+{\footnotesize
+\begin{tabular}{@{}lccccc@{}}
 \toprule
-Method & Overall & Bear & Bull & Neutral & Set Size & Std Dev \\ \midrule
-Standard CP & 89.82\% & 88.37\% & 93.82\% & 84.87\% & 0.90 & 4.61\% \\
-Class-Cond & 91.09\% & 91.47\% & 92.35\% & 89.08\% & 0.92 & 1.57\% \\
-Improvement & +1.27\% & +3.10\% & -1.47\% & +4.21\% & +0.02 & -66.0\% \\ \bottomrule
+Method & Overall & Bear & Bull & Neutral & Std Dev \\ \midrule
+Standard CP & 89.82\% & 88.37\% & 93.82\% & 84.87\% & 4.61\% \\
+Class-Cond & 91.09\% & 91.47\% & 92.35\% & 89.08\% & 1.57\% \\
+Improvement & +1.27\% & +3.10\% & -1.47\% & +4.21\% & -66.0\% \\ \bottomrule
 \end{tabular}
+}
 \end{table}
 
-\textbf{Adaptive CP.} Financial time series data are not stationary, exhibiting regime change patterns. Adaptive conformal prediction (CP) methods use the concept of a window to update the quantile values when new data points are obtained. Results are obtained using three window values: 126 days, 252 days, and 504 days, equivalent to 6 months, 1 year, and 2 years, respectively. Results in Table \ref{tab:adaptive} show that all window values have achieved valid empirical coverage values between 89.82\% and 90.38\%, and the optimal window value that considers recent regime change patterns and satisfies statistical stability is 126 days.
+\textbf{Adaptive CP.} Financial time series data are not stationary, exhibiting regime change patterns. Adaptive conformal prediction (CP) methods~\cite{gibbs2021adaptive,gibbs2022online,xu2022conformal} use the concept of a window to update the quantile values when new data points are obtained. Results are obtained using three window values: 126 days, 252 days, and 504 days, equivalent to 6 months, 1 year, and 2 years, respectively. Results in Table \ref{tab:adaptive} show that all window values have achieved valid empirical coverage values between 89.82\% and 90.38\%, and the optimal window value that considers recent regime change patterns and satisfies statistical stability is 126 days.
 
 \begin{table}[h]
 \centering
@@ -411,21 +399,7 @@ Improvement & -0.57 & +3.10 & -6.47 & +5.89 & 0.00 & -79.3 \\ \bottomrule
 \footnotesize{All coverage values in \%. SD = Std Dev of coverage across regimes.}
 \end{table}
 
-In summary, the performance of each method is presented in Table \ref{tab:enhanced_cp}, where it may be observed that the hybrid method achieves the best coverage balance with a standard deviation of 0.95\%, along with strong performance on rare event coverage with bear regime at 91.47\% and neutral regime at 90.76\%.
-
-\begin{table}[h]
-\centering
-\caption{Enhanced Conformal Prediction Methods Comparison}
-\label{tab:enhanced_cp}
-\begin{tabular}{@{}lccccc@{}}
-\toprule
-Method & Overall & Bear & Bull & Neutral & Std Dev \\ \midrule
-Standard CP & 89.82\% & 88.37\% & 93.82\% & 84.87\% & 4.61\% \\
-Class-Cond & 91.09\% & 91.47\% & 92.35\% & 89.08\% & 1.57\% \\
-Adaptive & 90.38\% & 90.70\% & 94.41\% & 84.45\% & 4.29\% \\
-\textbf{Hybrid} & \textbf{89.25\%} & \textbf{91.47\%} & \textbf{87.35\%} & \textbf{90.76\%} & \textbf{0.95\%} \\ \bottomrule
-\end{tabular}
-\end{table}
+In summary, the performance of each method is presented in the above tables, where it may be observed that the hybrid method achieves the best coverage balance with a standard deviation of 0.95\%, along with strong performance on rare event coverage with bear regime at 91.47\% and neutral regime at 90.76\%.
 
 \subsection{Transaction Cost Sensitivity}
 
@@ -463,22 +437,6 @@ GLD & Commodity & 94.6\% & 65.2\% & 1.60 \\ \midrule
 Mean & - & 88.4\% & 83.5\% & 1.20 \\ \bottomrule
 \end{tabular}
 \end{table}
-
-% FIGURE 7: Multi-Market Analysis (Optional)
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.48\textwidth]{results/figures/multi_market_analysis.png}
-\caption{Regime classification performance across multiple geographic markets demonstrating framework generalizability.}
-\label{fig:multi_market}
-\end{figure}
-
-% FIGURE 8: Baseline Comparison (Optional)
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.48\textwidth]{results/figures/baseline_comparison.png}
-\caption{Performance comparison against baseline methods including naive prediction and traditional uncertainty quantification approaches.}
-\label{fig:baseline}
-\end{figure}
 
 \section{Discussion}
 
@@ -520,58 +478,26 @@ Multi-asset validation reveals significant limitations in the introduced framewo
 
 The model and results have several shortcomings: (1) It is dependent on HMM regime classifications as ground truth that may not be a complete identification of market regimes; sensitivity analysis on the choice of initial HMM conditions and number of HMM states was not explored; (2) It employs static allocation rules that are not portfolio goal optimized; this is partially addressed by Note 9 by specifying portfolio goal functions for allocation rules directly; however, whether the chosen allocation rules are globally optimal or even nearby optimal is unclear; (3) It is limited by the focus on a single asset regarding the potential for portfolio diversity; this is addressed by utilizing multiple assets for the regimes based on overall market performance; however, further work can be done by applying this model on multiple assets taking into account correlation between assets; (4) It requires careful asset-dependent calibration for various sophisticated models that may have different performance based on asset class; this is addressed in this model by accurately specifying asset classes for regimes; however, a more accurate model may be built by employing more diversified assets based on performance; (5) It has several assumptions regarding the backtest environment that can potentially lead to overestimation of performance. The comparison of training times between Gradient Boosting models and Transformers was done on a single machine with an Intel i7-10700K CPU and 32\,GB RAM for a single run. Future work can be done on multiple-asset regimes taking into account correlation between assets. It can also be extended by employing allocation strategies based on modern portfolio theory.
 
-% FIGURE 9: Class-Conditional CP Comparison (Optional - for extended version)
+% FIGURE 12: Transaction Cost Sensitivity
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/enhanced_cp/class_conditional_cp_comparison.png}
-\caption{Class-conditional conformal prediction performance showing improved coverage balance across imbalanced regime classes.}
-\label{fig:class_conditional}
-\end{figure}
-
-% FIGURE 10: Adaptive CP Window Comparison (Optional - for extended version)
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.48\textwidth]{results/enhanced_cp/adaptive_cp_window_comparison.png}
-\caption{Adaptive conformal prediction with varying calibration window sizes demonstrating robustness to non-stationarity.}
-\label{fig:adaptive_window}
-\end{figure}
-
-% FIGURE 11: All Methods Comparison (Optional - for extended version)
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.48\textwidth]{results/enhanced_cp/all_methods_comparison.png}
-\caption{Comprehensive comparison of baseline, class-conditional, adaptive, and hybrid conformal prediction methods.}
-\label{fig:all_methods}
-\end{figure}
-
-% FIGURE 12: Transaction Cost Sensitivity (Optional - for extended version)
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.48\textwidth]{results/cp_portfolio/transaction_cost_sensitivity.png}
+\includegraphics[width=\columnwidth]{results/cp_portfolio/transaction_cost_sensitivity.png}
 \caption{Portfolio performance sensitivity analysis across varying transaction cost levels.}
 \label{fig:transaction_cost}
 \end{figure}
 
-% FIGURE 13: Cross-Asset Comparison (Optional - for extended version)
+% FIGURE 14: Per-Regime Coverage Heatmap
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/multi_asset/cross_asset_comparison.png}
-\caption{Conformal prediction performance across multiple asset classes including equities, bonds, and commodities.}
-\label{fig:cross_asset}
-\end{figure}
-
-% FIGURE 14: Per-Regime Coverage Heatmap (Optional - for extended version)
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.48\textwidth]{results/multi_asset/per_regime_coverage_heatmap.png}
+\includegraphics[width=\columnwidth]{results/multi_asset/per_regime_coverage_heatmap.png}
 \caption{Heatmap visualization of coverage rates across regimes and asset classes.}
 \label{fig:coverage_heatmap}
 \end{figure}
 
-% FIGURE 15: Coverage Balance (Optional - for extended version)
+% FIGURE 15: Coverage Balance
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.48\textwidth]{results/multi_asset/coverage_balance.png}
+\includegraphics[width=\columnwidth]{results/multi_asset/coverage_balance.png}
 \caption{Coverage balance metrics across different conformal prediction variants and asset classes.}
 \label{fig:coverage_balance}
 \end{figure}
@@ -627,10 +553,35 @@ CP Average variant replaces last line with:
 \end{verbatim}
 }
 
-\section*{Acknowledgment}
-This work was supported by Bina Nusantara University as part of the Fundamentals of Data Science course (COMP6784001) in the Computer Science Department.
+\section*{Author Contributions}
+\textbf{Riki Awal Syahputra}: Conceptualization, methodology, software, formal analysis, writing - original draft. \textbf{Darrus Loamayer}: Data curation, validation, writing - review \& editing. \textbf{Yiyang Liu}: Visualization, investigation, writing - review \& editing. \textbf{Nunung Nurul Qomariyah}: Supervision, project administration. \textbf{Raymond Bahana}: Supervision, resources.
 
-\cite{barber2022,angelopoulos2021gentle,xu2021,gibbs2022,vovk2020,barber2022temporal,bastos2024conformal,gibbs2021adaptive,xu2022conformal,vovk2020online,angelopoulos2021class,romano2020classification,nanopoulos2025conformal,wisniewski2020application,angelopoulos2021uncertainty,barber2021jackknife,gibbs2022online,bae2023deep,barber2021temporal}
+\section*{Acknowledgment}
+This work was supported by Bina Nusantara University as part of the Fundamentals of Data Science course (COMP6784001) in the School of Computing and Creative Arts.
+
+\section*{Questions and Answers}
+
+During the presentation, the following questions were raised and addressed:
+
+\textbf{Q1: Why did you choose gold to compare in the multi-asset analysis?}
+
+Gold is chosen as a typical asset class because it displays a distinct régime behavior compared to equity and bond assets. Gold tends to be a safe asset and has a negative correlation with equity assets in a bear régime. Hence, gold is a perfect case study for testing how well our conformal prediction method is capable of adapting to a particular asset class. Gold also has a strong enough historical support base.
+
+\textbf{Q2: Why do you think this project represents a novelty?}
+
+This work tackles the three open issues at the same time: (1) empirical evidence for conformal prediction in financial regime classification, (2) class-conditional approaches to handle class imbalance in rare financial regimes, and (3) conformal prediction for non-stationary financial time series. Our original proposal is a conformal prediction paradigm merging adaptive calibration and class-conditional quantiles, providing a radical improvement of 79.3\% in coverage balance. To the best of our knowledge, no study has combined HMM-regime identification and conformal prediction for portfolio optimization with distribution-free confidence intervals.
+
+\textbf{Q3: Why did you choose FRED as the resource for macroeconomic data?}
+
+The reason for choosing the Federal Reserve Economic Data (FRED) database is that FRED is the most accurate and reliable provider of macroeconomic data in the U.S., and it is provided and maintained by the Federal Reserve Bank of St. Louis. In identifying a country’s regime, macroeconomic variables such as the Federal Funds Rate and Consumer Price Index are essential variables in measuring the cycles of the economy and the trends of the country’s monetary policy.
+
+\textbf{Q4: Why did you choose conformal prediction over other uncertainty quantification methods?}
+
+Rationale for this includes its capability of providing a distribution-free and finite sample guarantee without requiring any assumption on the distribution. This is especially important in financial series, where fat tails, structural changes, and non-stationarity prevail. By using this method, it is possible to provide a guaranteed result for the individual to achieve at least a $1 - \alpha$ probability regardless of its actual probability distribution in a real financial scenario.
+
+\textbf{Q5: Can this framework be implemented for the Indonesian market in the future?}
+
+Yes, the approach is asset agnostic, so it is applicable to the Indonesian market. The methodology needs: (1) enough history to detect the regimes (preferably 10+ years of history), (2) features that are relevant to the market, such as local market variables, along with variables from Bank Indonesia, (3) features that reflect the market specifics, for example, the fact that the market is not 24/7 due to the time difference, which affects the liquidity. The difficulties for the approach to work in the Indonesian market would lie in the ability to find high-quality data for the assets within the market, the possibility that the dynamic patterns for the regimes might differ due to the characteristics of the market (emerging markets, for instance), or the need to take into account the market specifics regarding risk factors.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
